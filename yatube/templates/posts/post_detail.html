@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+  Записи Автора {{ post.author.username }}
+{% endblock %}
+
+{% block content %}
+      <div class="container py-5">
+        <h1>Пост пользователя {{ post.author.username }} </h1>
+        <article>
+            {% include "includes/single_post.html" %}
+            {% if post.group %}
+            <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
+                <p></p>
+                <a href="{% url 'posts:profile' post.author.username %}">все записи автора</a>
+            {% endif %}
+        {% include "includes/comment.html" %}
+        </article>
+      </div>
+{%endblock%}
